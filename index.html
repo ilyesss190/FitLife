@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitLife — Train. Eat. Evolve.</title>
+  <meta name="description" content="FitLife is a modern training and nutrition platform. Structured workout programs, practical nutrition plans, a BMI calculator and a personalized program builder.">
+  <meta name="theme-color" content="#070908">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c4f542'/%3E%3Cpath d='M20 22v20M12 27v10M44 22v20M52 27v10M20 32h24' stroke='%23070908' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="icon-dumbbell" viewBox="0 0 24 24"><path d="M7 7v10M3.5 9.5v5M17 7v10M20.5 9.5v5M7 12h10"/></symbol>
+    <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 22c4.4 0 7-2.9 7-6.6 0-2.6-1.5-4.7-3.3-6.4-.7-.7-1.7-1.6-2.2-2.9-.2-.5-.9-.6-1.2-.1-.8 1.3-1.2 2.9-1.2 4.4 0 1.1.2 2.1.5 3-1-.5-1.8-1.6-2.2-2.8-.2-.5-.8-.6-1.1-.2C7.3 11.6 5 13.9 5 16.4 5 19.7 7.6 22 12 22Z"/></symbol>
+    <symbol id="icon-activity" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></symbol>
+    <symbol id="icon-sparkle" viewBox="0 0 24 24"><path d="M12 2.5 14.2 9l6.6 2.2-6.6 2.2L12 20l-2.2-6.6L3.2 11.2 9.8 9 12 2.5Z"/></symbol>
+    <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8L12 22l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    <symbol id="icon-drop" viewBox="0 0 24 24"><path d="M12 2.5S19 10 19 14.5a7 7 0 0 1-14 0C5 10 12 2.5 12 2.5Z"/></symbol>
+    <symbol id="icon-bowl" viewBox="0 0 24 24"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M8.5 8.5c0-1.8.9-3 2.5-3.8M13 8.5c0-1.3.6-2.2 1.8-2.8"/></symbol>
+    <symbol id="icon-fish" viewBox="0 0 24 24"><path d="M2.5 12s3-5 8.5-5 7.5 3 10.5 5c-3 2-5 5-10.5 5s-8.5-5-8.5-5Z"/><path d="M6 12h.01"/></symbol>
+    <symbol id="icon-jar" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="14.5" rx="3"/><path d="M8.5 2.5h7M7 11h10"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="icon-youtube" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5v-5Z"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></symbol>
+  </svg>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#home" class="brand" aria-label="FitLife — back to top">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7v10M3.5 9.5v5M17 7v10M20.5 9.5v5M7 12h10"/></svg>
+        </span>
+        <span class="brand-text">FITLIFE<span>.</span></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
+        <a href="#home" class="nav-link is-active">Home</a>
+        <a href="#training" class="nav-link">Training</a>
+        <a href="#nutrition" class="nav-link">Nutrition</a>
+        <a href="#bmi" class="nav-link">BMI Calculator</a>
+        <a href="#program" class="nav-link">My Program</a>
+        <a href="#program" class="btn btn-primary btn-sm nav-cta">Get Started <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HOME / HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow">Personal training, reimagined</p>
+          <h1 class="hero-title">
+            <span>Build a</span>
+            <span class="accent">stronger</span>
+            <span class="outline">version of you.</span>
+          </h1>
+          <p class="hero-lead">Science-backed training, smarter nutrition and a plan built around your body. No fads, no shortcuts — just measurable progress, week after week.</p>
+          <div class="hero-actions">
+            <a href="#program" class="btn btn-primary">Build my program <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <a href="#training" class="btn btn-ghost">Explore workouts <svg class="icon" aria-hidden="true"><use href="#icon-dumbbell"/></svg></a>
+          </div>
+          <dl class="hero-stats">
+            <div>
+              <dt>Active members</dt>
+              <dd><span data-count="500">0</span>+</dd>
+            </div>
+            <div>
+              <dt>Expert programs</dt>
+              <dd><span data-count="12">0</span></dd>
+            </div>
+            <div>
+              <dt>Years coaching</dt>
+              <dd><span data-count="8">0</span></dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-media">
+            <img src="assets/hero.jpg" alt="Athlete performing a heavy barbell back squat in a dark gym with green lighting" width="1024" height="1536" fetchpriority="high">
+            <div class="hero-media-shade" aria-hidden="true"></div>
+            <span class="hero-chip"><span class="pulse-dot" aria-hidden="true"></span> Open gym · 24/7</span>
+            <div class="hero-session">
+              <div class="session-icon"><svg class="icon" aria-hidden="true"><use href="#icon-flame"/></svg></div>
+              <div class="session-body">
+                <span>Today's focus</span>
+                <strong>Lower body power</strong>
+                <small>5 exercises · 45 min</small>
+              </div>
+              <div class="session-ring" aria-label="Session 75 percent complete">
+                <svg viewBox="0 0 36 36" aria-hidden="true">
+                  <circle class="ring-track" cx="18" cy="18" r="15.9"></circle>
+                  <circle class="ring-value" cx="18" cy="18" r="15.9"></circle>
+                </svg>
+                <span>75%</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-badge" aria-hidden="true">
+            <svg class="icon"><use href="#icon-sparkle"/></svg>
+            <span>Built for real life</span>
+          </div>
+        </div>
+      </div>
+      <a href="#training" class="scroll-cue" aria-label="Scroll to training programs">
+        <span>Scroll to explore</span>
+        <span class="scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>Strength</span><i>✦</i><span>Discipline</span><i>✦</i><span>Nutrition</span><i>✦</i><span>Recovery</span><i>✦</i><span>Consistency</span><i>✦</i><span>Progress</span><i>✦</i>
+        </div>
+        <div class="marquee-group">
+          <span>Strength</span><i>✦</i><span>Discipline</span><i>✦</i><span>Nutrition</span><i>✦</i><span>Recovery</span><i>✦</i><span>Consistency</span><i>✦</i><span>Progress</span><i>✦</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MUSCLE TRAINING ============ -->
+    <section class="section training" id="training">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Training programs</p>
+            <h2>Train with purpose,<br><span class="accent">not guesswork.</span></h2>
+          </div>
+          <p class="section-intro">Structured plans for every level. Follow the sessions, track the lifts and let progressive overload do the rest. Filter by level or training style to find your fit.</p>
+        </div>
+
+        <div class="training-banner reveal">
+          <img src="assets/training.jpg" alt="Dark industrial gym with dumbbell racks and green accent lighting" width="1792" height="1024" loading="lazy">
+          <div class="training-banner-content">
+            <span class="tag">Coach's note</span>
+            <p>“Consistency beats intensity. Show up three times a week for a year and you will outperform every two-week hero.”</p>
+            <span class="banner-author">— The FitLife coaching team</span>
+          </div>
+        </div>
+
+        <div class="filter-bar reveal" role="group" aria-label="Filter training programs">
+          <button class="filter-btn is-active" data-filter="all" aria-pressed="true">All programs</button>
+          <button class="filter-btn" data-filter="beginner" aria-pressed="false">Beginner</button>
+          <button class="filter-btn" data-filter="advanced" aria-pressed="false">Advanced</button>
+          <button class="filter-btn" data-filter="strength" aria-pressed="false">Strength</button>
+          <button class="filter-btn" data-filter="hypertrophy" aria-pressed="false">Hypertrophy</button>
+        </div>
+
+        <div class="program-grid" id="programGrid">
+          <article class="program-card reveal" data-tags="beginner strength" data-program="forge">
+            <div class="program-top">
+              <span class="program-icon"><svg class="icon" aria-hidden="true"><use href="#icon-dumbbell"/></svg></span>
+              <span class="level-badge beginner">Beginner</span>
+            </div>
+            <span class="program-index" aria-hidden="true">01</span>
+            <h3>Foundation Forge</h3>
+            <p>Master the squat, hinge, push and pull with a full-body plan that builds real-world strength from zero.</p>
+            <ul class="program-tags"><li>Full body</li><li>Gym</li></ul>
+            <div class="program-meta">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>6 weeks</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg>3×/week</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg>40 min</span>
+            </div>
+            <button class="card-link" data-program="forge">View program <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+
+          <article class="program-card reveal" data-tags="beginner hypertrophy" data-program="reset">
+            <div class="program-top">
+              <span class="program-icon"><svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg></span>
+              <span class="level-badge beginner">Beginner</span>
+            </div>
+            <span class="program-index" aria-hidden="true">02</span>
+            <h3>Total Body Reset</h3>
+            <p>Low-impact circuits and dumbbell basics to rebuild movement quality and lean muscle — safely.</p>
+            <ul class="program-tags"><li>Dumbbells</li><li>Low impact</li></ul>
+            <div class="program-meta">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>4 weeks</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg>3×/week</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg>35 min</span>
+            </div>
+            <button class="card-link" data-program="reset">View program <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+
+          <article class="program-card reveal" data-tags="beginner hypertrophy" data-program="daily30">
+            <div class="program-top">
+              <span class="program-icon"><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg></span>
+              <span class="level-badge beginner">Beginner</span>
+            </div>
+            <span class="program-index" aria-hidden="true">03</span>
+            <h3>The Daily 30</h3>
+            <p>Short, focused dumbbell sessions for busy schedules. No wasted minutes, no guesswork.</p>
+            <ul class="program-tags"><li>Home-friendly</li><li>Time-efficient</li></ul>
+            <div class="program-meta">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>5 weeks</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg>4×/week</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg>30 min</span>
+            </div>
+            <button class="card-link" data-program="daily30">View program <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+
+          <article class="program-card reveal" data-tags="advanced strength" data-program="power">
+            <div class="program-top">
+              <span class="program-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bolt"/></svg></span>
+              <span class="level-badge advanced">Advanced</span>
+            </div>
+            <span class="program-index" aria-hidden="true">04</span>
+            <h3>Power Build</h3>
+            <p>Heavy compound lifts, smart intensity management and a squat–bench–deadlift core.</p>
+            <ul class="program-tags"><li>Barbell</li><li>Periodized</li></ul>
+            <div class="program-meta">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>8 weeks</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg>4×/week</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg>60 min</span>
+            </div>
+            <button class="card-link" data-program="power">View program <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+
+          <article class="program-card reveal" data-tags="advanced hypertrophy" data-program="engine">
+            <div class="program-top">
+              <span class="program-icon"><svg class="icon" aria-hidden="true"><use href="#icon-flame"/></svg></span>
+              <span class="level-badge advanced">Advanced</span>
+            </div>
+            <span class="program-index" aria-hidden="true">05</span>
+            <h3>Hypertrophy Engine</h3>
+            <p>A high-volume push / pull / legs split engineered for maximum muscle growth.</p>
+            <ul class="program-tags"><li>PPL split</li><li>High volume</li></ul>
+            <div class="program-meta">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>10 weeks</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg>5×/week</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg>70 min</span>
+            </div>
+            <button class="card-link" data-program="engine">View program <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+
+          <article class="program-card reveal" data-tags="advanced strength" data-program="athletic">
+            <div class="program-top">
+              <span class="program-icon"><svg class="icon" aria-hidden="true"><use href="#icon-target"/></svg></span>
+              <span class="level-badge advanced">Advanced</span>
+            </div>
+            <span class="program-index" aria-hidden="true">06</span>
+            <h3>Athletic Edge</h3>
+            <p>Explosive power, sprint work and strength circuits for athletes who need to move fast.</p>
+            <ul class="program-tags"><li>Performance</li><li>Conditioning</li></ul>
+            <div class="program-meta">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>8 weeks</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg>5×/week</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg>55 min</span>
+            </div>
+            <button class="card-link" data-program="athletic">View program <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NUTRITION ============ -->
+    <section class="section nutrition" id="nutrition">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Nutrition made simple</p>
+            <h2>Fuel the work.<br><span class="accent">Earn the results.</span></h2>
+          </div>
+          <p class="section-intro">No crash diets, no forbidden foods. Just protein-forward meals, sensible portions and daily plans you can actually stick to.</p>
+        </div>
+
+        <div class="nutrition-grid">
+          <div class="nutrition-feature reveal">
+            <img src="assets/nutrition.jpg" alt="Healthy salmon, quinoa and greens bowl on a dark table" width="1024" height="1024" loading="lazy">
+            <div class="nutrition-feature-shade" aria-hidden="true"></div>
+            <div class="nutrition-feature-content">
+              <span class="tag">Eat with intent</span>
+              <h3>Recovery starts on your plate.</h3>
+              <p>Whole foods, generous protein and carbs timed around training. Simple inputs, predictable outputs.</p>
+              <a href="#recipes" class="text-link">Browse recipes <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            </div>
+          </div>
+
+          <div class="diet-card reveal">
+            <div class="diet-card-head">
+              <div>
+                <span class="eyebrow small">Daily meal plan</span>
+                <h3>Sample day of eating</h3>
+              </div>
+              <div class="diet-tabs" role="tablist" aria-label="Meal plan type">
+                <button class="diet-tab is-active" data-diet="training" role="tab" aria-selected="true" aria-controls="dietTraining">Training</button>
+                <button class="diet-tab" data-diet="rest" role="tab" aria-selected="false" aria-controls="dietRest">Rest</button>
+              </div>
+            </div>
+
+            <div class="diet-panel is-active" data-diet-panel="training" id="dietTraining" role="tabpanel">
+              <div class="diet-total"><strong>2,450</strong><span>kcal target</span></div>
+              <ul class="meal-list">
+                <li><span class="meal-time">7:30</span><div><strong>Oats, whey &amp; blueberries</strong><small>Breakfast</small></div><span class="meal-kcal">520</span></li>
+                <li><span class="meal-time">10:30</span><div><strong>Greek yogurt &amp; almonds</strong><small>Snack</small></div><span class="meal-kcal">260</span></li>
+                <li><span class="meal-time">13:00</span><div><strong>Grilled chicken rice bowl</strong><small>Lunch</small></div><span class="meal-kcal">680</span></li>
+                <li><span class="meal-time">16:30</span><div><strong>Protein shake &amp; banana</strong><small>Pre-workout</small></div><span class="meal-kcal">300</span></li>
+                <li><span class="meal-time">19:30</span><div><strong>Salmon, rice &amp; greens</strong><small>Dinner</small></div><span class="meal-kcal">690</span></li>
+              </ul>
+              <div class="macro-bars">
+                <div class="macro"><div class="macro-label"><span>Protein</span><span>180 g</span></div><div class="bar"><span style="--w: 78%"></span></div></div>
+                <div class="macro"><div class="macro-label"><span>Carbs</span><span>250 g</span></div><div class="bar"><span style="--w: 64%"></span></div></div>
+                <div class="macro"><div class="macro-label"><span>Fats</span><span>70 g</span></div><div class="bar"><span style="--w: 42%"></span></div></div>
+              </div>
+            </div>
+
+            <div class="diet-panel" data-diet-panel="rest" id="dietRest" role="tabpanel" hidden>
+              <div class="diet-total"><strong>2,050</strong><span>kcal target</span></div>
+              <ul class="meal-list">
+                <li><span class="meal-time">8:30</span><div><strong>Veggie omelette &amp; toast</strong><small>Breakfast</small></div><span class="meal-kcal">460</span></li>
+                <li><span class="meal-time">11:30</span><div><strong>Apple &amp; peanut butter</strong><small>Snack</small></div><span class="meal-kcal">250</span></li>
+                <li><span class="meal-time">13:30</span><div><strong>Turkey &amp; avocado wrap</strong><small>Lunch</small></div><span class="meal-kcal">590</span></li>
+                <li><span class="meal-time">17:00</span><div><strong>Cottage cheese &amp; berries</strong><small>Snack</small></div><span class="meal-kcal">240</span></li>
+                <li><span class="meal-time">19:30</span><div><strong>Lean beef &amp; roasted veg</strong><small>Dinner</small></div><span class="meal-kcal">510</span></li>
+              </ul>
+              <div class="macro-bars">
+                <div class="macro"><div class="macro-label"><span>Protein</span><span>160 g</span></div><div class="bar"><span style="--w: 70%"></span></div></div>
+                <div class="macro"><div class="macro-label"><span>Carbs</span><span>190 g</span></div><div class="bar"><span style="--w: 50%"></span></div></div>
+                <div class="macro"><div class="macro-label"><span>Fats</span><span>78 g</span></div><div class="bar"><span style="--w: 48%"></span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="recipe-grid" id="recipes">
+          <article class="recipe-card reveal">
+            <div class="recipe-top">
+              <span class="recipe-icon bowl"><svg class="icon" aria-hidden="true"><use href="#icon-bowl"/></svg></span>
+              <div class="recipe-chips"><span>20 min</span><span>520 kcal</span></div>
+            </div>
+            <h3>Green Power Bowl</h3>
+            <p>Quinoa, roasted broccoli, avocado and crispy chickpeas with a bright lemon-tahini dressing.</p>
+            <div class="recipe-macros"><span><b>P</b> 24g</span><span><b>C</b> 58g</span><span><b>F</b> 22g</span></div>
+            <button class="card-link" data-recipe="bowl">View recipe <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+
+          <article class="recipe-card reveal">
+            <div class="recipe-top">
+              <span class="recipe-icon salmon"><svg class="icon" aria-hidden="true"><use href="#icon-fish"/></svg></span>
+              <div class="recipe-chips"><span>25 min</span><span>610 kcal</span></div>
+            </div>
+            <h3>Lemon Herb Salmon</h3>
+            <p>Pan-seared salmon with quinoa, charred greens and a garlic-lemon sauce. High protein, high flavour.</p>
+            <div class="recipe-macros"><span><b>P</b> 42g</span><span><b>C</b> 45g</span><span><b>F</b> 28g</span></div>
+            <button class="card-link" data-recipe="salmon">View recipe <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+
+          <article class="recipe-card reveal">
+            <div class="recipe-top">
+              <span class="recipe-icon oats"><svg class="icon" aria-hidden="true"><use href="#icon-jar"/></svg></span>
+              <div class="recipe-chips"><span>5 min + overnight</span><span>420 kcal</span></div>
+            </div>
+            <h3>Berry Overnight Oats</h3>
+            <p>Rolled oats, Greek yogurt, chia and mixed berries. Prepare once, grab-and-go for three mornings.</p>
+            <div class="recipe-macros"><span><b>P</b> 26g</span><span><b>C</b> 52g</span><span><b>F</b> 12g</span></div>
+            <button class="card-link" data-recipe="oats">View recipe <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </article>
+        </div>
+
+        <div class="advice-grid">
+          <article class="advice-card reveal">
+            <span class="advice-num">01</span>
+            <h4>Protein at every meal</h4>
+            <p>Aim for 1.6–2.2 g per kg of bodyweight daily, spread across 3–4 meals to support recovery and keep you full.</p>
+          </article>
+          <article class="advice-card reveal">
+            <span class="advice-num">02</span>
+            <h4>Hydrate before hunger</h4>
+            <p>Drink roughly 35 ml per kg of bodyweight. Add an extra 500–750 ml on training days, and a pinch of salt if you sweat heavily.</p>
+          </article>
+          <article class="advice-card reveal">
+            <span class="advice-num">03</span>
+            <h4>Carbs are fuel</h4>
+            <p>Don't fear them. Time most of your carbohydrates around training, and build the rest of your plate from protein and vegetables.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BMI CALCULATOR ============ -->
+    <section class="section bmi" id="bmi">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Know your numbers</p>
+          <h2>BMI <span class="accent">calculator.</span></h2>
+          <p class="section-intro">A quick snapshot of where you stand. BMI is not the whole story — muscle mass, body composition and how you feel matter too — but it is a useful starting point.</p>
+        </div>
+
+        <div class="bmi-card reveal" id="bmiCard" data-cat="healthy">
+          <div class="bmi-form">
+            <div class="bmi-form-head">
+              <h3>Your measurements</h3>
+              <div class="unit-toggle" role="group" aria-label="Measurement units">
+                <button type="button" class="unit-btn is-active" data-unit="metric" aria-pressed="true">Metric</button>
+                <button type="button" class="unit-btn" data-unit="imperial" aria-pressed="false">Imperial</button>
+              </div>
+            </div>
+
+            <div class="unit-panel is-active" data-unit-panel="metric">
+              <div class="field">
+                <div class="field-head">
+                  <label for="heightCm">Height</label>
+                  <div class="num-input">
+                    <input type="number" id="heightCm" min="120" max="220" value="175" inputmode="numeric" aria-label="Height in centimeters">
+                    <span>cm</span>
+                  </div>
+                </div>
+                <input type="range" id="heightCmRange" min="120" max="220" value="175" step="1" aria-label="Height slider in centimeters">
+                <div class="range-scale"><span>120 cm</span><span>220 cm</span></div>
+              </div>
+              <div class="field">
+                <div class="field-head">
+                  <label for="weightKg">Weight</label>
+                  <div class="num-input">
+                    <input type="number" id="weightKg" min="35" max="250" value="72" inputmode="numeric" aria-label="Weight in kilograms">
+                    <span>kg</span>
+                  </div>
+                </div>
+                <input type="range" id="weightKgRange" min="35" max="250" value="72" step="1" aria-label="Weight slider in kilograms">
+                <div class="range-scale"><span>35 kg</span><span>250 kg</span></div>
+              </div>
+            </div>
+
+            <div class="unit-panel" data-unit-panel="imperial" hidden>
+              <div class="field">
+                <div class="field-head">
+                  <label for="heightFt">Height</label>
+                  <div class="imperial-inputs">
+                    <div class="num-input">
+                      <input type="number" id="heightFt" min="3" max="7" value="5" inputmode="numeric" aria-label="Height in feet">
+                      <span>ft</span>
+                    </div>
+                    <div class="num-input">
+                      <input type="number" id="heightIn" min="0" max="11" value="9" inputmode="numeric" aria-label="Height in inches">
+                      <span>in</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <div class="field-head">
+                  <label for="weightLb">Weight</label>
+                  <div class="num-input">
+                    <input type="number" id="weightLb" min="77" max="551" value="159" inputmode="numeric" aria-label="Weight in pounds">
+                    <span>lb</span>
+                  </div>
+                </div>
+                <input type="range" id="weightLbRange" min="77" max="551" value="159" step="1" aria-label="Weight slider in pounds">
+                <div class="range-scale"><span>77 lb</span><span>551 lb</span></div>
+              </div>
+            </div>
+
+            <p class="form-error bmi-error" id="bmiError" role="alert"></p>
+            <div class="bmi-actions">
+              <button type="button" class="btn btn-primary" id="bmiCalculate">Calculate BMI <svg class="icon" aria-hidden="true"><use href="#icon-activity"/></svg></button>
+              <button type="button" class="btn btn-ghost" id="bmiReset">Reset</button>
+            </div>
+            <p class="bmi-note">Designed for adults 18+. This is a screening tool, not a medical diagnosis.</p>
+          </div>
+
+          <div class="bmi-result">
+            <div class="gauge-wrap">
+              <svg class="gauge" viewBox="0 0 240 140" aria-hidden="true">
+                <path class="gauge-track" d="M30 120 A90 90 0 0 1 210 120" pathLength="100"/>
+                <path class="gauge-zone zone-under" d="M30 120 A90 90 0 0 1 210 120" pathLength="100" stroke-dasharray="23.2 76.8" stroke-dashoffset="0"/>
+                <path class="gauge-zone zone-healthy" d="M30 120 A90 90 0 0 1 210 120" pathLength="100" stroke-dasharray="23.2 76.8" stroke-dashoffset="-23.2"/>
+                <path class="gauge-zone zone-over" d="M30 120 A90 90 0 0 1 210 120" pathLength="100" stroke-dasharray="17.9 82.1" stroke-dashoffset="-46.4"/>
+                <path class="gauge-zone zone-obese" d="M30 120 A90 90 0 0 1 210 120" pathLength="100" stroke-dasharray="35.7 64.3" stroke-dashoffset="-64.3"/>
+                <g class="needle" id="bmiNeedle">
+                  <line x1="120" y1="120" x2="120" y2="48"/>
+                  <circle cx="120" cy="120" r="8"/>
+                </g>
+              </svg>
+              <div class="gauge-labels">
+                <span><i class="dot under"></i>Under</span>
+                <span><i class="dot healthy"></i>Healthy</span>
+                <span><i class="dot over"></i>Over</span>
+                <span><i class="dot obese"></i>Obese</span>
+              </div>
+            </div>
+
+            <div class="bmi-readout" aria-live="polite">
+              <span class="bmi-caption">Your BMI</span>
+              <div class="bmi-value-row">
+                <strong class="bmi-value" id="bmiValue">—</strong>
+                <span class="bmi-category" id="bmiCategory">Enter details</span>
+              </div>
+              <p class="bmi-message" id="bmiMessage">Adjust the sliders or type your measurements to see your result.</p>
+            </div>
+
+            <div class="bmi-healthy">
+              <span>Healthy weight range for your height</span>
+              <strong id="bmiRange">—</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERSONALIZED PROGRAM ============ -->
+    <section class="section program" id="program">
+      <div class="container program-grid-layout">
+        <div class="program-copy reveal">
+          <p class="eyebrow">Personalized programming</p>
+          <h2>A plan that fits<br><span class="accent">your life.</span></h2>
+          <p class="section-intro">Tell us your goal, your experience and how often you can train. We'll turn it into a weekly split, calorie target and protein goal — instantly.</p>
+          <ul class="benefit-list">
+            <li><span class="benefit-check"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span>Built around your goal, experience and schedule</li>
+            <li><span class="benefit-check"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span>Calorie, protein and hydration targets calculated for you</li>
+            <li><span class="benefit-check"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span>A weekly split you can actually follow</li>
+            <li><span class="benefit-check"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span>Matched with a structured FitLife program</li>
+          </ul>
+          <blockquote class="testimonial">
+            <p>“I stopped guessing. In 12 weeks I gained 6 kg of lean mass and finally started enjoying training.”</p>
+            <footer><span class="avatar">MK</span><div><strong>Marcus K.</strong><span>Member since 2024</span></div></footer>
+          </blockquote>
+        </div>
+
+        <div class="planner-card reveal" id="plannerCard">
+          <div class="planner-head" id="plannerHead">
+            <div>
+              <span class="eyebrow small">Free plan builder</span>
+              <h3>Build your blueprint</h3>
+            </div>
+            <span class="step-count" id="stepCount">Step 1 of 3</span>
+          </div>
+
+          <ol class="step-track" id="stepTrack">
+            <li class="step-dot is-active" data-step-dot="1"><span>1</span>Goal</li>
+            <li class="step-dot" data-step-dot="2"><span>2</span>About you</li>
+            <li class="step-dot" data-step-dot="3"><span>3</span>Training</li>
+          </ol>
+
+          <form id="planForm" novalidate>
+            <section class="form-step is-active" data-step="1" aria-label="Step 1: your goal">
+              <h4 class="step-title">What's your main goal?</h4>
+              <div class="choice-grid">
+                <label class="choice-card">
+                  <input type="radio" name="goal" value="fat">
+                  <span class="choice-inner">
+                    <span class="choice-icon"><svg class="icon" aria-hidden="true"><use href="#icon-flame"/></svg></span>
+                    <strong>Lose fat</strong>
+                    <small>Burn fat, keep muscle</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="goal" value="muscle" checked>
+                  <span class="choice-inner">
+                    <span class="choice-icon"><svg class="icon" aria-hidden="true"><use href="#icon-dumbbell"/></svg></span>
+                    <strong>Build muscle</strong>
+                    <small>Add size and shape</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="goal" value="strength">
+                  <span class="choice-inner">
+                    <span class="choice-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bolt"/></svg></span>
+                    <strong>Get stronger</strong>
+                    <small>Lift heavier, move better</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="goal" value="health">
+                  <span class="choice-inner">
+                    <span class="choice-icon"><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg></span>
+                    <strong>Stay healthy</strong>
+                    <small>Energy and longevity</small>
+                  </span>
+                </label>
+              </div>
+              <p class="form-error" data-error-for="1" role="alert"></p>
+            </section>
+
+            <section class="form-step" data-step="2" aria-label="Step 2: about you" hidden>
+              <h4 class="step-title">A little about you</h4>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="age">Age</label>
+                  <div class="input-shell">
+                    <input type="number" id="age" name="age" min="16" max="90" value="28" inputmode="numeric" required>
+                    <span>yrs</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="gender">Sex</label>
+                  <div class="select-shell">
+                    <select id="gender" name="gender" required>
+                      <option value="" selected disabled>Select</option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                      <option value="other">Other / prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="planHeight">Height</label>
+                  <div class="input-shell">
+                    <input type="number" id="planHeight" name="height" min="120" max="220" value="175" inputmode="numeric" required>
+                    <span>cm</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="planWeight">Weight</label>
+                  <div class="input-shell">
+                    <input type="number" id="planWeight" name="weight" min="35" max="250" value="75" inputmode="numeric" required>
+                    <span>kg</span>
+                  </div>
+                </div>
+                <div class="field field-full">
+                  <label for="experience">Training experience</label>
+                  <div class="select-shell">
+                    <select id="experience" name="experience">
+                      <option value="beginner">Beginner — under 1 year</option>
+                      <option value="intermediate" selected>Intermediate — 1 to 3 years</option>
+                      <option value="advanced">Advanced — 3+ years</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <p class="form-error" data-error-for="2" role="alert"></p>
+            </section>
+
+            <section class="form-step" data-step="3" aria-label="Step 3: training preferences" hidden>
+              <h4 class="step-title">How do you like to train?</h4>
+              <div class="field">
+                <span class="field-label">Training days per week</span>
+                <div class="segmented">
+                  <label><input type="radio" name="days" value="2"><span>2</span></label>
+                  <label><input type="radio" name="days" value="3"><span>3</span></label>
+                  <label><input type="radio" name="days" value="4" checked><span>4</span></label>
+                  <label><input type="radio" name="days" value="5"><span>5</span></label>
+                  <label><input type="radio" name="days" value="6"><span>6</span></label>
+                </div>
+              </div>
+              <div class="field">
+                <span class="field-label">Session length</span>
+                <div class="segmented">
+                  <label><input type="radio" name="session" value="30"><span>30 min</span></label>
+                  <label><input type="radio" name="session" value="45" checked><span>45 min</span></label>
+                  <label><input type="radio" name="session" value="60"><span>60 min</span></label>
+                  <label><input type="radio" name="session" value="75"><span>75 min</span></label>
+                </div>
+              </div>
+              <div class="field">
+                <span class="field-label">Equipment access</span>
+                <div class="segmented segmented-wide">
+                  <label><input type="radio" name="equipment" value="gym" checked><span>Full gym</span></label>
+                  <label><input type="radio" name="equipment" value="home"><span>Dumbbells at home</span></label>
+                  <label><input type="radio" name="equipment" value="bodyweight"><span>Bodyweight only</span></label>
+                </div>
+              </div>
+              <p class="form-error" data-error-for="3" role="alert"></p>
+            </section>
+
+            <div class="form-nav">
+              <button type="button" class="btn btn-ghost" id="planBack" disabled>Back</button>
+              <button type="button" class="btn btn-primary" id="planNext">Continue <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+            </div>
+          </form>
+
+          <div class="plan-result" id="planResult" aria-live="polite" hidden></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand" aria-label="FitLife — back to top">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7v10M3.5 9.5v5M17 7v10M20.5 9.5v5M7 12h10"/></svg>
+          </span>
+          <span class="brand-text">FITLIFE<span>.</span></span>
+        </a>
+        <p>Training, nutrition and recovery — built for people who show up.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="FitLife on Instagram"><svg class="icon"><use href="#icon-instagram"/></svg></a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="FitLife on YouTube"><svg class="icon"><use href="#icon-youtube"/></svg></a>
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="FitLife on X"><svg class="icon"><use href="#icon-x"/></svg></a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Footer navigation">
+        <h5>Explore</h5>
+        <a href="#home">Home</a>
+        <a href="#training">Training programs</a>
+        <a href="#nutrition">Nutrition &amp; meals</a>
+        <a href="#bmi">BMI calculator</a>
+        <a href="#program">My program</a>
+      </nav>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@fitlife.fit">hello@fitlife.fit</a>
+        <span>Mon–Fri · 06:00–20:00</span>
+        <span>Ready when you are.</span>
+        <a href="#home" class="back-top-link" id="footerBackTop">Back to top <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"/></svg></a>
+      </div>
+
+      <div class="footer-col footer-news">
+        <h5>Weekly fuel</h5>
+        <p>One email a week. Training tips, recipes and zero spam.</p>
+        <form class="newsletter" id="newsletterForm" novalidate>
+          <label class="sr-only" for="newsletterEmail">Email address</label>
+          <div class="newsletter-row">
+            <input type="email" id="newsletterEmail" placeholder="you@email.com" autocomplete="email" required>
+            <button type="submit" class="btn btn-primary btn-icon" aria-label="Subscribe to the newsletter"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          </div>
+          <p class="newsletter-status" id="newsletterStatus" role="status"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> FitLife. Train. Eat. Evolve.</p>
+      <p class="footer-note">Made for movement. No backend, no nonsense.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"/></svg>
+  </button>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog" role="document">
+      <button class="modal-close" data-close-modal aria-label="Close dialog"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span>
+    <span id="toastMessage"></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
